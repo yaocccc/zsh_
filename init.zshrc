@@ -48,6 +48,19 @@ if [ -z "$TMUX" ]; then tmux attach -t 0 || tmux new -s 0; fi
 clear && echo -e '\033[43;30mhello :) \033[0m'
 
 # oh my zsh config
+    local extract="
+    local in=\${\${\"\$(<{f})\"%\$'\0'*}#*\$'\0'}
+    local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
+    local realpath=\${ctxt[IPREFIX]}\${ctxt[hpre]}\$in
+    realpath=\${(Qe)~realpath}
+    "
+
+    zstyle ':completion:complete:*:options' sort false
+    zstyle ':fzf-tab:complete:_zlua:*' query-string input
+    zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm,cmd -w -w"
+    zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$extract'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
+    zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'ls --color=always $realpath'
+
     export ZSH=~/.config/zsh
     ZSH_THEME="simple"
     plugins=(git z extract fzf-tab)
