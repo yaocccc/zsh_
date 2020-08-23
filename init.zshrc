@@ -33,7 +33,7 @@
     gll() { git --no-pager log --pretty=format:"%h %s" --graph -n ${1-10} }
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
-    sc() { ~/.screenlayout/$1.sh }
+    sc() { ~/.config/zsh/xrandconfig/$1.sh }
 
 # oh my zsh config
     export ZSH=~/.config/zsh
