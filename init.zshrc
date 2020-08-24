@@ -24,7 +24,6 @@
     alias ts='ts-node'
     alias rl='zsh && exit'
     alias st='source ~/infoloop/test.env'
-    alias I='cd ~/infoloop'
     alias ns='npm run start'
     alias nb='npm run build'
     alias td='vim +n $WORKDOC/$(date +"%Y-%m-%d" -d "+24hour").md $WORKDOC/$(date +"%Y-%m-%d").md'
