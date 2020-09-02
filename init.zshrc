@@ -26,7 +26,7 @@
     alias st='source ~/infoloop/test.env'
     alias ns='npm run start'
     alias nb='npm run build'
-    alias td='vim +n $WORKDOC/$(date +"%Y-%m-%d" -d "+24hour").md $WORKDOC/$(date +"%Y-%m-%d").md'
+    alias td='vim +n $WORKDOC/$(date +"%Y-%m-%d" -d "-24hour").md $WORKDOC/$(date +"%Y-%m-%d").md'
     alias dx='du -h -d 1'
     S() { ssh root@$1 }
     gll() { git --no-pager log --pretty=format:"%h %s" --graph -n ${1-10} }
@@ -57,14 +57,14 @@
 # fzf-tab
     FZF_TAB_COMMAND=(
         fzf
-        --ansi   # 启用 ANSI 颜色代码的支持，对于显示分组来说是必需的
-        --expect='$continuous_trigger,$print_query' # 连续补全
+        --ansi
+        --expect='$continuous_trigger,$print_query'
         '--color=hl:$(( $#headers == 0 ? 108 : 255 ))'
-        --nth=2,3 --delimiter='\x00'  # 不搜索前缀
+        --nth=2,3 --delimiter='\x00'
         --layout=reverse --height='${FZF_TMUX_HEIGHT:=75%}'
         --tiebreak=begin -m --bind=tab:down,btab:up,change:top,ctrl-space:toggle --cycle
-        '--query=$query'   # $query 将在运行时扩展为查询字符串
-        '--header-lines=$#headers' # $#headers 将在运行时扩展为组标题数目
+        '--query=$query'
+        '--header-lines=$#headers'
         --print-query
         --height 40%
     )
