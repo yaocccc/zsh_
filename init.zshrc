@@ -1,6 +1,6 @@
 # common
     export WORKDOC=$HOME/backups/work
-    export LAST_PATH_FILE=~/.config/zsh/cache/last_path.env
+    export LAST_PATH_FILE=$HOME/.config/zsh/cache/last_path.env
     export PYTHON=$(which python3)
 
 # nvm config
