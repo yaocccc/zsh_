@@ -1,5 +1,6 @@
 # common
-    export WORKDOC="$HOME/backups/work"
+    export WORKDOC=$HOME/backups/work
+    export LAST_PATH_FILE=~/.config/zsh/cache/last_path.env
     export PYTHON=$(which python3)
 
 # nvm config
@@ -33,10 +34,16 @@
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
     sc() { ~/.config/zsh/xrandconfig/$1.sh }
+    cd_hook() {
+        emulate -L zsh
+        rm $LAST_PATH_FILE
+        echo 'export LAST_PATH='$PWD >> $LAST_PATH_FILE
+    }
+    chpwd_functions=(${chpwd_functions[@]} "cd_hook")
 
 # oh my zsh config
     export ZSH=~/.config/zsh
-    ZSH_THEME="simple"
+    #  ZSH_THEME="simple"
     plugins=(git z extract fzf-tab)
 
     autoload -U compinit && compinit
@@ -80,4 +87,7 @@
     zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$extract'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
     zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'ls --color=always $realpath'
 
+# do something
+source $LAST_PATH_FILE
+cd $LAST_PATH
 clear
