@@ -44,7 +44,7 @@
 # oh my zsh config
     export ZSH=~/.config/zsh
     ZSH_THEME="simple"
-    plugins=(z extract fzf-tab)
+    plugins=(git z extract fzf-tab)
 
     autoload -U compinit && compinit
     zmodload -i zsh/complist
