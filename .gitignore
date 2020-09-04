@@ -7,3 +7,4 @@ log/
 *.log
 **/dump.rdb
 **/.DS_Store
+**/catch
