@@ -7,7 +7,8 @@
 
 # maps
     alias nvim=~/.config/nvim/0.4.3/bin/nvim
-    alias gpo='git push origin'
+    alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
+    alias gpl='git pull origin $(git symbolic-ref --short -q HEAD)'
     alias gcc='git checkout'
     alias gs='git status'
     alias vzc='vim $ZSH/init.zshrc'
