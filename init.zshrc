@@ -27,7 +27,7 @@
     gll() { git --no-pager log --pretty=format:"%h %s" --graph -n ${1-10} }
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
-    sc() { ~/.config/zsh/xrandconfig/$1.sh }
+    sc() { ~/.config/zsh/script/xrandr/$1.sh }
     cd_hook() {
         emulate -L zsh
         rm $LAST_PATH_FILE
