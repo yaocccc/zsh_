@@ -2,7 +2,7 @@
 
 backup() {
     mkdir -p ~/backups/linux
-    sudo rsync -Pa / ~/backups/linux --exclude=/media/* --exclude=/sys/* --exclude=/proc/* --exclude=/mnt/* --exclude=/tmp/* --exclude=/home/chenyc/backups/linux/*
+    sudo rsync -Pa / ~/backups/linux --exclude=/media/* --exclude=/sys/* --exclude=/proc/* --exclude=/mnt/* --exclude=/tmp/* --exclude=*/node_modules/* --exclude=/home/chenyc/backups/linux/*
     clear && echo -e '\033[43;30mbackup completed :) \033[0m'
 }
 
