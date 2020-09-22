@@ -10,9 +10,7 @@ init_linux() {
 }
 
 case $1 in
-    "linux")
-        init_linux
-        ;;
+    linux) init_linux ;;
 esac
 
 clear && echo -e '\033[43;30minited :) \033[0m'
