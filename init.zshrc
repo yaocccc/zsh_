@@ -3,13 +3,14 @@
     export PYTHON=$(which python3)
     export EDITOR=~/.config/nvim/0.4.3/bin/nvim
     export LAST_PATH_FILE=$HOME/.config/zsh/cache/last_path.env
+    export PRIVOXY_ENV_FILE=$HOME/.config/zsh/cache/privoxy.env
     export NVIM=~/.config/nvim
 
 # maps
     alias nvim=~/.config/nvim/0.4.3/bin/nvim
     alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
-    alias gcc='git checkout'
+    alias gco='git checkout'
     alias gs='git status'
     alias vzc='vim $ZSH/init.zshrc'
     alias vrc='vim $NVIM/init.vim'
@@ -30,6 +31,13 @@
     gll() { git --no-pager log --pretty=format:"%h %s" --graph -n ${1-10} }
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
+    tp() {
+        if [[ "$http_proxy" == "" ]] {
+            ~/scripts/set-privoxy.sh on && source $PRIVOXY_ENV_FILE && echo 'privoxy: on'
+        } else {
+            ~/scripts/set-privoxy.sh off && source $PRIVOXY_ENV_FILE && echo 'privoxy: off'
+        }
+    }
     cd_hook() {
         emulate -L zsh
         rm $LAST_PATH_FILE
@@ -74,5 +82,6 @@
 
 # enter hook
     source $LAST_PATH_FILE
+    source $PRIVOXY_ENV_FILE
     cd $LAST_PATH
     clear
