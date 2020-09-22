@@ -15,7 +15,6 @@
     alias vrc='vim $NVIM/init.vim'
     alias vde='vim ~/infoloop/tianting/deploy'
     alias fzf='fzf --preview "bat --style=numbers --color=always {} | head -100" --height 40%'
-    alias gam='git add --all && git commit -m'
     alias ts='ts-node'
     alias rl='zsh && exit'
     alias st='source ~/infoloop/test.env'
@@ -26,6 +25,7 @@
     alias sc='~/scripts/set-screen.sh'
     alias qq='nohup /opt/deepinwine/apps/Deepin-TIM/run.sh > /dev/null 2>&1 &'
     alias wechat='nohup /opt/deepinwine/apps/Deepin-WeChat/run.sh > /dev/null 2>&1 &'
+    gam() { git add --all && git commit -m "$*" }
     S() { ssh root@$1 }
     gll() { git --no-pager log --pretty=format:"%h %s" --graph -n ${1-10} }
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
