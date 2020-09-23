@@ -40,25 +40,24 @@
         bindsym $mod+minus scratchpad show
     # system menu
         bindsym $mod+z exec --no-startup-id morc_menu
-        bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-        bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
+        bindsym $mod+Ctrl+m exec --no-startup-id terminal -e 'alsamixer'
+        bindsym $mod+Ctrl+b exec --no-startup-id terminal -e 'bmenu'
     # applications
-        bindsym $mod+F2 exec google-chrome-stable
-        bindsym $mod+F3 exec pcmanfm
-        bindsym $mod+m exec netease-cloud-music
-        bindsym $mod+Shift+m exec pavucontrol
+        bindsym $mod+F2 exec --no-startup-id google-chrome-stable
+        bindsym $mod+F3 exec --no-startup-id pcmanfm
+        bindsym $mod+m exec --no-startup-id netease-cloud-music
+        bindsym $mod+Shift+m exec --no-startup-id pavucontrol
     # i3 reload
         bindsym $mod+Shift+c reload
         bindsym $mod+Shift+r restart
     # Lock screen
         bindsym $mod+l exec --no-startup-id blurlock
     # 截图工具
-        bindsym $mod+Shift+a --release exec /usr/bin/flameshot gui
+        bindsym $mod+Shift+a --release exec --no-startup-id /usr/bin/flameshot gui
         bindsym Print exec --no-startup-id i3-scrot
         bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
     # 终端
-        # bindsym $mod++Return exec terminal
-        bindsym $mod+Return exec alacritty
+        bindsym $mod+Return exec --no-startup-id st
     # 启动器
         bindsym $mod+space exec --no-startup-id dmenu_recency
         bindsym $mod+d exec --no-startup-id rofi -show run
@@ -89,8 +88,7 @@
         set $ws7 7
         set $ws8 8
         set $ws9 9
-        set $ws0 0
-
+        set $ws0 :)
         bindsym $mod+0 workspace $ws0
         bindsym $mod+1 workspace $ws1
         bindsym $mod+2 workspace $ws2
@@ -101,7 +99,6 @@
         bindsym $mod+7 workspace $ws7
         bindsym $mod+8 workspace $ws8
         bindsym $mod+9 workspace $ws9
-
         bindsym $mod+Ctrl+0 move container to workspace $ws0
         bindsym $mod+Ctrl+1 move container to workspace $ws1
         bindsym $mod+Ctrl+2 move container to workspace $ws2
@@ -112,7 +109,6 @@
         bindsym $mod+Ctrl+7 move container to workspace $ws7
         bindsym $mod+Ctrl+8 move container to workspace $ws8
         bindsym $mod+Ctrl+9 move container to workspace $ws9
-
         bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
         bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
         bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
@@ -123,7 +119,6 @@
         bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
         bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
         bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
-
         workspace $ws0 output eDP
         workspace $ws1 output DisplayPort-1
         workspace $ws2 output DisplayPort-1
@@ -189,17 +184,14 @@
     set_from_resource $term_color13    color13
     set_from_resource $term_color14    color14
     set_from_resource $term_color15    color15
-
     client.focused          #4c7899 #16a085 #ffffff #2e9ef4
     client.focused_inactive #333333 #5f676a #ffffff #484e50
     client.unfocused        #333333 #222222 #888888 #292d2e
     client.urgent           #2f343a #900000 #ffffff #900000
     client.placeholder      #000000 #0c0c0c #ffffff #000000 
     client.background       #2B2C2B
-
     gaps inner 8
     gaps outer -2
-
     #  smart_gaps on
     #  smart_borders on
 
@@ -275,7 +267,7 @@
         bindsym button5 nop
         strip_workspace_numbers yes
 
-        font pango:DejaVu Sans Mono 9
+        font pango:DejaVu Sans Mono,Awesome 9
 
         colors {
             background         #222D31
