@@ -8,10 +8,6 @@
 
 # maps
     alias nvim=~/.config/nvim/0.4.3/bin/nvim
-    alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
-    alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
-    alias gco='git checkout'
-    alias gs='git status'
     alias vzc='vim $ZSH/init.zshrc'
     alias vrc='vim $NVIM/init.vim'
     alias vde='vim ~/infoloop/tianting/deploy'
@@ -24,12 +20,20 @@
     alias td='vim +n $WORKDOC/$(date +"%Y-%m-%d" -d "-24hour").md $WORKDOC/$(date +"%Y-%m-%d").md $WORKDOC/work.md'
     alias dx='du -h -d 1'
     alias sc='~/scripts/set-screen.sh'
+
     alias qq='nohup /opt/deepinwine/apps/Deepin-TIM/run.sh > /dev/null 2>&1 &'
     alias wechat='nohup /opt/deepinwine/apps/Deepin-WeChat/run.sh > /dev/null 2>&1 &'
+
+    alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
+    alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
+    alias gs='git status'
+    alias gss='git status -s'
     gam() { git add --all && git commit -m "$*" }
-    S() { ssh root@$1 }
+    gco() { git checkout ${1-"master"} $2 $3 $4 }
     gll() { git --no-pager log --pretty=format:"%h %s" --graph -n ${1-10} }
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
+    
+    S() { ssh root@$1 }
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
     tp() {
         if [[ "$http_proxy" == "" ]] {
@@ -54,7 +58,7 @@
 # oh my zsh config
     export ZSH=~/.config/zsh
     ZSH_THEME="simple"
-    plugins=(git z extract fzf-tab)
+    plugins=(z extract fzf-tab)
 
     autoload -U compinit && compinit
     zmodload -i zsh/complist
