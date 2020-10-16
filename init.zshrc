@@ -37,16 +37,15 @@
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
     tp() {
         if [[ "$http_proxy" == "" ]] {
-            ~/scripts/set-privoxy.sh on && source $PRIVOXY_ENV_FILE && echo 'privoxy: on'
+            ~/scripts/set-privoxy.sh on && source $PRIVOXY_ENV_FILE && echo 'privoxy: on' 
         } else {
-            ~/scripts/set-privoxy.sh off && source $PRIVOXY_ENV_FILE && echo 'privoxy: off'
+            ~/scripts/set-privoxy.sh off && source $PRIVOXY_ENV_FILE && echo 'privoxy: off' 
         }
     }
     cd_hook() {
         emulate -L zsh
         rm $LAST_PATH_FILE
         echo 'export LAST_PATH='$PWD >> $LAST_PATH_FILE
-        ls
     }
     chpwd_functions=(${chpwd_functions[@]} "cd_hook")
 
@@ -58,11 +57,9 @@
 # oh my zsh config
     export ZSH=~/.config/zsh
     ZSH_THEME="simple"
-    plugins=(z extract fzf-tab)
-
+    plugins=(z extract fzf-tab web-search)
     autoload -U compinit && compinit
     zmodload -i zsh/complist
-
     source $ZSH/oh-my-zsh.sh
     source $ZSH/plugins/fzf-tab/fzf-tab.zsh
     source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
