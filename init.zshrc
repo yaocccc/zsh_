@@ -16,6 +16,7 @@
     alias rl='zsh && exit'
     alias st='source ~/infoloop/test.env'
     alias ns='npm run start'
+    alias nt='npm run ts'
     alias nb='npm run build'
     alias td='vim +n $WORKDOC/$(date +"%Y-%m-%d" -d "-24hour").md $WORKDOC/$(date +"%Y-%m-%d").md $WORKDOC/work.md'
     alias dx='du -h -d 1'
