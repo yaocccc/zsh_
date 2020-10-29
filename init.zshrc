@@ -21,6 +21,8 @@
     alias td='vim +n $WORKDOC/$(date +"%Y-%m-%d" -d "-24hour").md $WORKDOC/$(date +"%Y-%m-%d").md $WORKDOC/work.md'
     alias dx='du -h -d 1'
     alias sc='~/scripts/set-screen.sh'
+    alias ssh='~/scripts/ssh.sh'
+    alias npm='npm $* --registry=http://registry.npm.taobao.org'
 
     alias qq='nohup /opt/deepinwine/apps/Deepin-TIM/run.sh > /dev/null 2>&1 &'
     alias wechat='nohup /opt/deepinwine/apps/Deepin-WeChat/run.sh > /dev/null 2>&1 &'
@@ -34,7 +36,6 @@
     gll() { git --no-pager log --pretty=format:"%h %s" --graph -n ${1-10} }
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
     
-    S() { ssh root@$1 }
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
     tp() {
         if [[ "$http_proxy" == "" ]] {
