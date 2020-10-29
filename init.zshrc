@@ -20,12 +20,14 @@
     alias nb='npm run build'
     alias td='vim +n $WORKDOC/$(date +"%Y-%m-%d" -d "-24hour").md $WORKDOC/$(date +"%Y-%m-%d").md $WORKDOC/work.md'
     alias dx='du -h -d 1'
-    alias sc='~/scripts/set-screen.sh'
-    alias ssh='~/scripts/ssh.sh'
     alias npm='npm $* --registry=http://registry.npm.taobao.org'
+    alias git='git --no-pager'
+
+    alias sc='~/scripts/set-screen.sh'
+    alias bl='~/scripts/bluetooth.sh'
+    alias ssh='~/scripts/ssh.sh'
 
     alias qq='nohup /opt/deepinwine/apps/Deepin-TIM/run.sh > /dev/null 2>&1 &'
-    alias wechat='nohup /opt/deepinwine/apps/Deepin-WeChat/run.sh > /dev/null 2>&1 &'
 
     alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
