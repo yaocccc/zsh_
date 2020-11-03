@@ -4,12 +4,11 @@
     export EDITOR=~/.config/nvim/0.4.3/bin/nvim
     export LAST_PATH_FILE=$HOME/.config/zsh/cache/last_path.env
     export PRIVOXY_ENV_FILE=$HOME/.config/zsh/cache/privoxy.env
-    export NVIM=~/.config/nvim
 
 # maps
-    alias nvim=~/.config/nvim/0.4.3/bin/nvim
+    vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
     alias vzc='vim $ZSH/init.zshrc'
-    alias vrc='vim $NVIM/init.vim'
+    alias vrc='vim ~/.config/nvim/init.vim'
     alias vde='vim ~/infoloop/tianting/deploy'
     alias fzf='fzf --preview "bat --style=numbers --color=always {} | head -100" --height 40%'
     alias ts='ts-node'
@@ -37,14 +36,19 @@
     gco() { git checkout ${1-"master"} $2 $3 $4 }
     gll() { git --no-pager log --pretty=format:"%h %s" --graph -n ${1-10} }
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
-    
-    vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
     tp() {
         if [[ "$http_proxy" == "" ]] {
             ~/scripts/set-privoxy.sh on && source $PRIVOXY_ENV_FILE && echo 'privoxy: on' 
         } else {
             ~/scripts/set-privoxy.sh off && source $PRIVOXY_ENV_FILE && echo 'privoxy: off' 
         }
+    }
+    docker() {
+        case $* in
+            restart) sudo docker restart $(sudo docker ps -a | sed 1d | awk '{print $1}') ;;
+            ps) sudo docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}" ;;
+            *) sudo docker $* ;;
+        esac
     }
     cd_hook() {
         emulate -L zsh
@@ -64,6 +68,7 @@
     plugins=(z extract fzf-tab web-search)
     autoload -U compinit && compinit
     zmodload -i zsh/complist
+    unsetopt correct
     source $ZSH/oh-my-zsh.sh
     source $ZSH/plugins/fzf-tab/fzf-tab.zsh
     source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
