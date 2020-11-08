@@ -1,9 +1,10 @@
 # common
-    export WORKDOC=$HOME/backups/work
     export PYTHON=$(which python3)
-    export EDITOR=~/.config/nvim/0.4.3/bin/nvim
-    export LAST_PATH_FILE=$HOME/.config/zsh/cache/last_path.env
-    export PRIVOXY_ENV_FILE=$HOME/.config/zsh/cache/privoxy.env
+    export EDITOR=/bin/nvim
+    export WORKDOC=$HOME/backups/work
+    export CURRENT_DIR_CACHE=$HOME/.config/zsh/cache/current_dir.env
+    export VIM_TEM_DIR_CACHE=$HOME/.config/zsh/cache/vim_tem_dir.env
+    export PRIVOXY_ENV=$HOME/.config/zsh/cache/privoxy.env
 
 # maps
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
@@ -21,13 +22,10 @@
     alias dx='du -h -d 1'
     alias npm='npm $* --registry=http://registry.npm.taobao.org'
     alias git='git --no-pager'
-
     alias sc='~/scripts/set-screen.sh'
     alias bl='~/scripts/bluetooth.sh'
     alias ssh='~/scripts/ssh.sh'
-
     alias qq='nohup /opt/deepinwine/apps/Deepin-TIM/run.sh > /dev/null 2>&1 &'
-
     alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
     alias gs='git status'
@@ -38,9 +36,9 @@
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
     tp() {
         if [[ "$http_proxy" == "" ]] {
-            ~/scripts/set-privoxy.sh on && source $PRIVOXY_ENV_FILE && echo 'privoxy: on' 
+            ~/scripts/set-privoxy.sh on && source $PRIVOXY_ENV && echo 'privoxy: on' 
         } else {
-            ~/scripts/set-privoxy.sh off && source $PRIVOXY_ENV_FILE && echo 'privoxy: off' 
+            ~/scripts/set-privoxy.sh off && source $PRIVOXY_ENV && echo 'privoxy: off' 
         }
     }
     docker() {
@@ -52,8 +50,8 @@
     }
     cd_hook() {
         emulate -L zsh
-        rm $LAST_PATH_FILE
-        echo 'export LAST_PATH='$PWD >> $LAST_PATH_FILE
+        if [[ $CURRENT_DIR_CACHE && -f $CURRENT_DIR_CACHE ]] { rm $CURRENT_DIR_CACHE }
+        echo 'export CURRENT_DIR='$PWD >> $CURRENT_DIR_CACHE
     }
     chpwd_functions=(${chpwd_functions[@]} "cd_hook")
 
@@ -91,7 +89,11 @@
     zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'ls --color=always $realpath'
 
 # enter hook
-    source $LAST_PATH_FILE
-    source $PRIVOXY_ENV_FILE
-    cd $LAST_PATH
+    source $PRIVOXY_ENV
+    source $CURRENT_DIR_CACHE
+    source $VIM_TEM_DIR_CACHE
+
+    if [[ $VIM_TEM_DIR && -d $VIM_TEM_DIR ]] { cd $VIM_TEM_DIR } else { cd $CURRENT_DIR }
+    if [[ $VIM_TEM_DIR_CACHE && -f $VIM_TEM_DIR_CACHE ]] { rm $VIM_TEM_DIR_CACHE }
+
     clear
