@@ -1,10 +1,6 @@
 # common
-    export PYTHON=$(which python3)
-    export EDITOR=/bin/nvim
-    export WORKDOC=$HOME/backups/work
-    export CURRENT_DIR_CACHE=$HOME/.config/zsh/cache/current_dir.env
-    export VIM_TEM_DIR_CACHE=$HOME/.config/zsh/cache/vim_tem_dir.env
-    export PRIVOXY_ENV=$HOME/.config/zsh/cache/privoxy.env
+    EDIT_PRIFILE=~/scripts/edit-profile.sh
+    PROFILE=~/.profile
 
 # maps
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
@@ -25,6 +21,7 @@
     alias sc='~/scripts/set-screen.sh'
     alias bl='~/scripts/bluetooth.sh'
     alias ssh='~/scripts/ssh.sh'
+    alias gif='~/scripts/gif-recorder.sh'
     alias qq='nohup /opt/deepinwine/apps/Deepin-TIM/run.sh > /dev/null 2>&1 &'
     alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
@@ -36,9 +33,9 @@
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
     tp() {
         if [[ "$http_proxy" == "" ]] {
-            ~/scripts/set-privoxy.sh on && source $PRIVOXY_ENV && echo 'privoxy: on' 
+            ~/scripts/set-privoxy.sh on && source $PROFILE && echo 'privoxy: on' 
         } else {
-            ~/scripts/set-privoxy.sh off && source $PRIVOXY_ENV && echo 'privoxy: off' 
+            ~/scripts/set-privoxy.sh off && source $PROFILE && echo 'privoxy: off' 
         }
     }
     docker() {
@@ -50,8 +47,7 @@
     }
     cd_hook() {
         emulate -L zsh
-        if [[ $CURRENT_DIR_CACHE && -f $CURRENT_DIR_CACHE ]] { rm $CURRENT_DIR_CACHE }
-        echo 'export CURRENT_DIR='$PWD >> $CURRENT_DIR_CACHE
+        bash $EDIT_PRIFILE CURRENT_DIR $PWD
     }
     chpwd_functions=(${chpwd_functions[@]} "cd_hook")
 
@@ -89,11 +85,6 @@
     zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'ls --color=always $realpath'
 
 # enter hook
-    source $PRIVOXY_ENV
-    source $CURRENT_DIR_CACHE
-    source $VIM_TEM_DIR_CACHE
-
-    if [[ $VIM_TEM_DIR && -d $VIM_TEM_DIR ]] { cd $VIM_TEM_DIR } else { cd $CURRENT_DIR }
-    if [[ $VIM_TEM_DIR_CACHE && -f $VIM_TEM_DIR_CACHE ]] { rm $VIM_TEM_DIR_CACHE }
-
+    source $PROFILE
+    if [[ -d $VIM_TEM_DIR ]] { cd $VIM_TEM_DIR && bash $EDIT_PRIFILE VIM_TEM_DIR '' } else { cd $CURRENT_DIR }
     clear
