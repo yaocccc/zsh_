@@ -47,7 +47,7 @@
     }
     cd_hook() {
         emulate -L zsh
-        bash $EDIT_PRIFILE CURRENT_DIR $PWD
+        $EDIT_PRIFILE CURRENT_DIR $PWD
     }
     chpwd_functions=(${chpwd_functions[@]} "cd_hook")
 
@@ -86,5 +86,5 @@
 
 # enter hook
     source $PROFILE
-    if [[ -d $VIM_TEM_DIR ]] { cd $VIM_TEM_DIR && bash $EDIT_PRIFILE VIM_TEM_DIR '' } else { cd $CURRENT_DIR }
+    if [[ -d $VIM_TEM_DIR ]] { cd $VIM_TEM_DIR && $EDIT_PRIFILE VIM_TEM_DIR '' } else { cd $CURRENT_DIR }
     clear
