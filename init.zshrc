@@ -1,7 +1,3 @@
-# common
-    EDIT_PRIFILE=~/scripts/edit-profile.sh
-    PROFILE=~/.profile
-
 # maps
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
     alias vzc='vim $ZSH/init.zshrc'
@@ -17,12 +13,15 @@
     alias td='vim +n $WORKDOC/$(date +"%Y-%m-%d" -d "-24hour").md $WORKDOC/$(date +"%Y-%m-%d").md $WORKDOC/work.md'
     alias dx='du -h -d 1'
     alias npm='npm $* --registry=http://registry.npm.taobao.org'
+    alias getip="ip addr show | grep '192.168.1' | awk '{print \$2}'"
     alias git='git --no-pager'
     alias sc='~/scripts/set-screen.sh'
     alias bl='~/scripts/bluetooth.sh'
     alias ssh='~/scripts/ssh.sh'
     alias gif='~/scripts/gif-recorder.sh'
     alias qq='nohup /opt/deepinwine/apps/Deepin-TIM/run.sh > /dev/null 2>&1 &'
+    alias google='web_search google'
+    alias baidu='web_search baidu'
     alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
     alias gs='git status'
@@ -33,9 +32,9 @@
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
     tp() {
         if [[ "$http_proxy" == "" ]] {
-            ~/scripts/set-privoxy.sh on && source $PROFILE && echo 'privoxy: on' 
+            ~/scripts/set-privoxy.sh on && source ~/.profile && echo 'privoxy: on' 
         } else {
-            ~/scripts/set-privoxy.sh off && source $PROFILE && echo 'privoxy: off' 
+            ~/scripts/set-privoxy.sh off && source ~/.profile && echo 'privoxy: off' 
         }
     }
     docker() {
@@ -47,7 +46,7 @@
     }
     cd_hook() {
         emulate -L zsh
-        $EDIT_PRIFILE CURRENT_DIR $PWD
+        ~/scripts/edit-profile.sh CURRENT_DIR $PWD
     }
     chpwd_functions=(${chpwd_functions[@]} "cd_hook")
 
@@ -85,6 +84,6 @@
     zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'ls --color=always $realpath'
 
 # enter hook
-    source $PROFILE
-    if [[ -d $VIM_TEM_DIR ]] { cd $VIM_TEM_DIR && $EDIT_PRIFILE VIM_TEM_DIR '' } else { cd $CURRENT_DIR }
+    source ~/.profile
+    if [[ -d $VIM_TEM_DIR ]] { cd $VIM_TEM_DIR && ~/scripts/edit-profile.sh VIM_TEM_DIR '' } else { cd $CURRENT_DIR }
     clear
