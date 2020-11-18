@@ -39,7 +39,7 @@
     }
     docker() {
         case $* in
-            restart) sudo docker restart $(sudo docker ps -a | sed 1d | awk '{print $1}') ;;
+            restart) sudo docker restart $(sudo docker ps -a | sed 1d | awk '{print $1}') >/dev/null 2>&1 & ;;
             ps) sudo docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}" ;;
             *) sudo docker $* ;;
         esac
