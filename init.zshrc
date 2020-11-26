@@ -1,5 +1,6 @@
 # maps
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
+    alias S='startx'
     alias vzc='vim $ZSH/init.zshrc'
     alias vrc='vim ~/.config/nvim/init.vim'
     alias vde='vim ~/infoloop/tianting/deploy'
@@ -32,9 +33,11 @@
     glll() { git --no-pager log --pretty=format:"%H %cd %cn %s" --graph -n ${1-10} }
     tp() {
         if [[ "$http_proxy" == "" ]] {
-            ~/scripts/set-privoxy.sh on && source ~/.profile && echo 'privoxy: on' 
+            ~/scripts/set-privoxy.sh on >> /dev/null 2>&1 && source ~/.profile
+            echo 'privoxy: on'
         } else {
-            ~/scripts/set-privoxy.sh off && source ~/.profile && echo 'privoxy: off' 
+            ~/scripts/set-privoxy.sh off >> /dev/null 2>&1 && source ~/.profile
+            echo 'privoxy: off'
         }
     }
     docker() {
