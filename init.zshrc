@@ -23,12 +23,12 @@
     alias qq='nohup /opt/deepinwine/apps/Deepin-TIM/run.sh > /dev/null 2>&1 &'
     alias google='web_search google'
     alias baidu='web_search baidu'
+    alias gco='git checkout'
     alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
     alias gs='git status'
     alias gss='git status -s'
     gam() { git add --all && git commit -m "$*" }
-    gco() { git checkout ${1-"master"} $2 $3 $4 }
     gll() { git --no-pager log --pretty=format:"%h %cn: %s" --graph -n ${1-10} }
     glll() { git --no-pager log --pretty=format:"%H %cd %cn: %s" --graph -n ${1-10} }
     tp() {
@@ -66,6 +66,8 @@
     autoload -U compinit && compinit
     zmodload -i zsh/complist
     unsetopt correct
+    bindkey -e
+    bindkey '^H' backward-kill-word
     source $ZSH/oh-my-zsh.sh
     source $ZSH/plugins/fzf-tab/fzf-tab.zsh
     source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -90,6 +92,7 @@
     zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm,cmd -w -w"
     zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$extract'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
     zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'ls --color=always ${~ctxt[hpre]}$in'
+    zstyle ':fzf-tab:complete:vim:*' extra-opts --preview=$extract'[ -f ${~ctxt[hpre]}$in ] && bat -p --color=always ${~ctxt[hpre]}$in | head -100 || ls --color=always ${~ctxt[hpre]}$in'
 
 # enter hook
     source ~/.profile
