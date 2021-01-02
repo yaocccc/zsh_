@@ -1,5 +1,8 @@
 # maps
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
+    alias year='dir=~/backups/todo/$(date +"%Y") && mkdir -p $dir && cd $dir && vim $(date +"%Y").md'
+    alias month='dir=~/backups/todo/$(date +"%Y")/$(date +"%Y.%m") && mkdir -p $dir && cd $dir && vim $(date +"%Y.%m").md'
+    alias day='dir=~/backups/todo/$(date +"%Y")/$(date +"%Y.%m") && mkdir -p $dir && cd $dir && vim $(date +"%Y.%m.%d").md'
     alias S='startx'
     alias vzc='vim $ZSH/init.zshrc'
     alias vrc='vim ~/.config/nvim/init.vim'
