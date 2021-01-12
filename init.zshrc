@@ -17,7 +17,7 @@
     alias td='vim +2n $WORKDOC/todo.md $WORKDOC/$(date +"%Y-%m-%d" -d "-24hour").md $WORKDOC/$(date +"%Y-%m-%d").md $WORKDOC/work.md'
     alias dx='du -h -d 1'
     alias npm='npm $* --registry=http://registry.npm.taobao.org'
-    alias getip="ip addr show | grep '192.168.1' | awk '{print \$2}'"
+    alias getip="ip addr show | grep '192.168.' | awk '{print \$2}'"
     alias git='git --no-pager'
     alias sc='~/scripts/set-screen.sh'
     alias bl='~/scripts/bluetooth.sh'
