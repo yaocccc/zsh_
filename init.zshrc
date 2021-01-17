@@ -23,7 +23,6 @@
     alias bl='~/scripts/bluetooth.sh'
     alias ssh='~/scripts/ssh.sh'
     alias gif='~/scripts/gif-recorder.sh'
-    alias qq='nohup /opt/deepinwine/apps/Deepin-TIM/run.sh > /dev/null 2>&1 &'
     alias google='web_search google'
     alias baidu='web_search baidu'
     alias gco='git checkout'
