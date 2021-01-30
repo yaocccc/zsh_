@@ -56,7 +56,7 @@
 # nvm config
     export NVM_DIR="$HOME/.nvm"
     nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
-    export PATH=$HOME/.nvm/versions/node/v11.15.0/bin/:$PATH
+    export PATH=$HOME/.nvm/versions/node/v15.7.0/bin/:$PATH
 
 # oh my zsh config
     export ZSH=~/.config/zsh
