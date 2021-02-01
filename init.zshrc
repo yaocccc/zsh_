@@ -33,18 +33,10 @@
     alias gs='git status'
     alias gss='git status -s'
     alias timer='~/scripts/app-starter.sh timer'
+    alias tp='~/scripts/app-starter.sh toogle_privoxy'
     gam() { git add --all && git commit -m "$*" }
     gll() { git --no-pager log --pretty=format:"%h %cn: %s" --graph -n ${1-10} }
     glll() { git --no-pager log --pretty=format:"%H %cd %cn: %s" --graph -n ${1-10} }
-    tp() {
-        if [[ "$http_proxy" == "" ]] {
-            ~/scripts/set-privoxy.sh on >> /dev/null 2>&1 && source ~/.profile
-            echo 'privoxy: on'
-        } else {
-            ~/scripts/set-privoxy.sh off >> /dev/null 2>&1 && source ~/.profile
-            echo 'privoxy: off'
-        }
-    }
     docker() {
         case $* in
             restart) sudo docker restart $(sudo docker ps -a | sed 1d | awk '{print $1}') ;;
