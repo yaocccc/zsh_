@@ -2,6 +2,7 @@
     export ZSH=~/.config/zsh
     export PYTHON=$(which python)
     export WORKDOC=/home/chenyc/backups/work
+    export EDITOR=nvim
 
 # maps
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
@@ -17,7 +18,6 @@
     alias nb='npm run build'
     alias td='vim +2n $WORKDOC/todo.md $WORKDOC/$(date +"%Y-%m-%d" -d "-24hour").md $WORKDOC/$(date +"%Y-%m-%d").md $WORKDOC/work.md'
     alias dx='du -h -d 1'
-    alias npm='npm $* --registry=http://registry.npm.taobao.org'
     alias getip="ip addr show | grep '192.168.' | awk '{print \$2}'"
     alias git='git --no-pager'
     alias sc='~/scripts/set-screen.sh'
@@ -32,6 +32,7 @@
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
     alias gs='git status'
     alias gss='git status -s'
+    alias timer='~/scripts/app-starter.sh timer'
     gam() { git add --all && git commit -m "$*" }
     gll() { git --no-pager log --pretty=format:"%h %cn: %s" --graph -n ${1-10} }
     glll() { git --no-pager log --pretty=format:"%H %cd %cn: %s" --graph -n ${1-10} }
