@@ -1,3 +1,8 @@
+# profile
+    export ZSH=~/.config/zsh
+    export PYTHON=$(which python)
+    export WORKDOC=/home/chenyc/backups/work
+
 # maps
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
     alias year='dir=~/backups/todo/$(date +"%Y") && mkdir -p $dir && cd $dir && vim $(date +"%Y").md'
@@ -56,10 +61,9 @@
 # nvm config
     export NVM_DIR="$HOME/.nvm"
     nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
-    export PATH=$HOME/.nvm/versions/node/v15.7.0/bin/:$PATH
+    export PATH=$HOME/.nvm/versions/node/v12.20.1/bin/:$PATH
 
 # oh my zsh config
-    export ZSH=~/.config/zsh
     ZSH_THEME="simple"
     plugins=(z extract fzf-tab web-search)
     autoload -U compinit && compinit
