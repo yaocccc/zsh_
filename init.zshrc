@@ -22,7 +22,6 @@
     alias git='git --no-pager'
     alias sc='~/scripts/set-screen.sh'
     alias bl='~/scripts/bluetooth.sh'
-    alias ssh='~/scripts/ssh.sh'
     alias gif='~/scripts/gif-recorder.sh'
     alias vpn='~/scripts/app-starter.sh vpn '
     alias google='web_search google'
@@ -45,11 +44,6 @@
             *) sudo docker $* ;;
         esac
     }
-    cd_hook() {
-        emulate -L zsh
-        ~/scripts/edit-profile.sh CURRENT_DIR $PWD
-    }
-    chpwd_functions=(${chpwd_functions[@]} "cd_hook")
 
 # nvm config
     export NVM_DIR="$HOME/.nvm"
@@ -58,7 +52,9 @@
 
 # oh my zsh config
     ZSH_THEME="simple"
+    DISABLE_AUTO_TITLE="true"
     plugins=(z extract fzf-tab web-search)
+    autoload -Uz add-zsh-hook
     autoload -U compinit && compinit
     zmodload -i zsh/complist
     unsetopt correct
@@ -69,6 +65,12 @@
     source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+    preexec_hook() { _cmd=($(echo $2)); _cmd=${(q)_cmd[1]}; case $_cmd in git|vim|nvim|sudo|yay|npm|cnpm) print -n "\e]2;$_cmd - $(basename `pwd`)\a";; esac; }
+    precmd_hook() { print -n "\e]2;$(basename `pwd`)\a"; }
+    chpwd_hook() { ~/scripts/edit-profile.sh CURRENT_DIR $PWD; }
+    add-zsh-hook -Uz preexec preexec_hook
+    add-zsh-hook -Uz precmd precmd_hook
+    add-zsh-hook -Uz chpwd chpwd_hook
 
 # fzf
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
