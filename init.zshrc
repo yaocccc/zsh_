@@ -31,7 +31,6 @@
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
     alias gs='git status'
     alias gss='git status -s'
-    alias timer='~/scripts/app-starter.sh timer'
     alias tp='~/scripts/app-starter.sh toogle_privoxy'
     gam() { git add --all && git commit -m "$*" }
     gll() { git --no-pager log --pretty=format:"%h %cn: %s" --graph -n ${1-10} }
@@ -65,11 +64,9 @@
     source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
-    preexec_hook() { _cmd=($(echo $2)); _cmd=${(q)_cmd[1]}; case $_cmd in git|vim|nvim|sudo|yay|npm|cnpm) print -n "\e]2;$_cmd - $(basename `pwd`)\a";; esac; }
-    precmd_hook() { print -n "\e]2;$(basename `pwd`)\a"; }
+    preexec_hook() { _cmd=($(echo $2)); print -n "\e]2;${(q)_cmd[1]} - $(basename `pwd`)\a"; }
     chpwd_hook() { ~/scripts/edit-profile.sh CURRENT_DIR $PWD; }
     add-zsh-hook -Uz preexec preexec_hook
-    add-zsh-hook -Uz precmd precmd_hook
     add-zsh-hook -Uz chpwd chpwd_hook
 
 # fzf
@@ -96,4 +93,5 @@
     source ~/.profile
     xset -b
     if [[ -d $VIM_TEM_DIR ]] { cd $VIM_TEM_DIR && ~/scripts/edit-profile.sh VIM_TEM_DIR '' } else { cd $CURRENT_DIR }
+    print -n "\e]2;$(basename `pwd`)\a"
     clear
