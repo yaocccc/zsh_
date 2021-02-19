@@ -53,6 +53,7 @@
     ZSH_THEME="simple"
     DISABLE_AUTO_TITLE="true"
     plugins=(z extract fzf-tab web-search)
+    alias ex="extract"
     autoload -Uz add-zsh-hook
     autoload -U compinit && compinit
     zmodload -i zsh/complist
