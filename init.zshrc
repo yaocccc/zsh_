@@ -31,7 +31,8 @@
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
     alias gs='git status'
     alias gss='git status -s'
-    alias tp='~/scripts/app-starter.sh toogle_privoxy'
+    alias tp='~/scripts/app-starter.sh toogle_privoxy && source ~/.profile'
+    alias ssh='~/.ssh/ssh.sh'
     gam() { git add --all && git commit -m "$*" }
     gll() { git --no-pager log --pretty=format:"%h %cn: %s" --graph -n ${1-10} }
     glll() { git --no-pager log --pretty=format:"%H %cd %cn: %s" --graph -n ${1-10} }
