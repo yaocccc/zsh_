@@ -6,6 +6,13 @@
 
 # maps
     vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
+    rm() {
+        for f in $*;
+        do
+            [ -f $f ] && mv $f ~/.local/share/Trash/files/$(date '+%Y%m%d-%H%M')$f;
+            [ -d $f ] && mv $f ~/.local/share/Trash/files/$(date '+%Y%m%d-%H%M')$f;
+        done
+    }
     alias year='dir=~/backups/todo/$(date +"%Y") && mkdir -p $dir && cd $dir && vim $(date +"%Y").md'
     alias month='dir=~/backups/todo/$(date +"%Y")/$(date +"%Y.%m") && mkdir -p $dir && cd $dir && vim $(date +"%Y.%m").md'
     alias day='dir=~/backups/todo/$(date +"%Y")/$(date +"%Y.%m") && mkdir -p $dir && cd $dir && vim $(date +"%Y.%m.%d").md'
