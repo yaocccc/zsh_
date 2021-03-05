@@ -9,3 +9,4 @@ log/
 **/.DS_Store
 **/catch
 cache/
+fzfhistory

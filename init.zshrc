@@ -9,8 +9,10 @@
     rm() {
         for f in $*;
         do
-            [ -f $f ] && mv $f ~/.local/share/Trash/files/$(date '+%Y%m%d-%H%M')$f;
-            [ -d $f ] && mv $f ~/.local/share/Trash/files/$(date '+%Y%m%d-%H%M')$f;
+            dir=~/.local/share/Trash/files/$(date '+%Y%m%d')/${f%/*}
+            mkdir -p $dir
+            [ -f $f ] && mv $f $dir/${f##*/};
+            [ -d $f ] && mv $f $dir/${f##*/};
         done
     }
     alias year='dir=~/backups/todo/$(date +"%Y") && mkdir -p $dir && cd $dir && vim $(date +"%Y").md'
@@ -80,7 +82,7 @@
 
 # fzf
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-    export FZF_DEFAULT_OPTS="--height 50% --layout=reverse"
+    export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --history=/home/chenyc/.config/zsh/fzfhistory"
     export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build,dist} --type f"
     export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat -n --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -10000'
 
