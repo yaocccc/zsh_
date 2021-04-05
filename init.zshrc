@@ -38,6 +38,7 @@
     alias gco='git checkout'
     alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
+    alias gd='git diff'
     alias gs='git status'
     alias gss='git status -s'
     alias tp='~/scripts/app-starter.sh toogle_privoxy && source ~/.profile'
