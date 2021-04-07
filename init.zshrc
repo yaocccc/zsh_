@@ -25,7 +25,6 @@
     alias ts='ts-node'
     alias ns='npm run start'
     alias nb='npm run build'
-    alias td='vim +2n $WORKDOC/todo.md $WORKDOC/$(date +"%Y-%m-%d" -d "-24hour").md $WORKDOC/$(date +"%Y-%m-%d").md $WORKDOC/work.md'
     alias dx='du -h -d 1'
     alias getip="ip addr show | grep '192.168.' | awk '{print \$2}'"
     alias git='git --no-pager'
