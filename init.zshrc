@@ -35,6 +35,7 @@
     alias google='web_search google'
     alias baidu='web_search baidu'
     alias gco='git checkout'
+    alias clock='tty-clock -csDC 7'
     alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
     alias gd='git diff'
@@ -81,7 +82,6 @@
     add-zsh-hook -Uz chpwd chpwd_hook
 
 # fzf
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
     export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --history=/home/chenyc/.config/zsh/fzfhistory"
     export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build,dist} --type f"
     export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat -n --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -10000'
