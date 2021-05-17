@@ -35,7 +35,8 @@
     alias google='web_search google'
     alias baidu='web_search baidu'
     alias gco='git checkout'
-    alias clock='tty-clock -csDC 7'
+    alias clock='~/scripts/app-starter.sh clock && exit'
+    alias surf='~/scripts/app-starter.sh surf'
     alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
     alias gd='git diff'
@@ -105,7 +106,6 @@
     xset -b
     if [[ -d $VIM_TEM_DIR ]] { cd $VIM_TEM_DIR && ~/scripts/edit-profile.sh VIM_TEM_DIR '' } else { cd $CURRENT_DIR }
     print -n "\e]2;$(basename `pwd`)\a"
-    clear
 
 # rm -rf ~/.config/zsh/fcitx
 # cp -r ~/.config/fcitx ~/.config/zsh/fcitx
