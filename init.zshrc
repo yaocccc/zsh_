@@ -44,9 +44,6 @@
     alias gss='git status -s'
     alias tp='~/scripts/app-starter.sh toogle_privoxy && source ~/.profile'
     alias ssh='~/.ssh/ssh.sh'
-    gam() { git add --all && git commit -m "$*" }
-    gll() { git --no-pager log --pretty=format:"%h %cn: %s" --graph -n ${1-10} }
-    glll() { git --no-pager log --pretty=format:"%H %cd %cn: %s" --graph -n ${1-10} }
     docker() {
         case $* in
             restart) sudo docker restart $(sudo docker ps -a | sed 1d | awk '{print $1}') ;;
@@ -55,6 +52,14 @@
             *) sudo docker $* ;;
         esac
     }
+    gam() { git add --all && git commit -m "$*" }
+    gitlog() {
+        count=`git branch | wc -l` && [ $count -gt 1 ] \
+            && git --no-pager log --pretty=format:$1 --graph   -n ${2-10} \
+            || git --no-pager log --pretty=format:$1 --reverse -n ${2-10}
+    }
+    gll() { gitlog "%h %s" $1 }
+    glll() { gitlog "%H %cd %cn: %s" $1 }
 
 # nvm config
     export NVM_DIR="$HOME/.nvm"
@@ -106,6 +111,7 @@
     xset -b
     if [[ -d $VIM_TEM_DIR ]] { cd $VIM_TEM_DIR && ~/scripts/edit-profile.sh VIM_TEM_DIR '' } else { cd $CURRENT_DIR }
     print -n "\e]2;$(basename `pwd`)\a"
+    clear
 
 # rm -rf ~/.config/zsh/fcitx
 # cp -r ~/.config/fcitx ~/.config/zsh/fcitx
