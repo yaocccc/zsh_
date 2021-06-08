@@ -44,6 +44,7 @@
     alias gss='git status -s'
     alias tp='~/scripts/app-starter.sh toogle_privoxy && source ~/.profile'
     alias ssh='~/.ssh/ssh.sh'
+    alias rl='sudo systemctl restart NetworkManager.service'
     docker() {
         case $* in
             restart) sudo docker restart $(sudo docker ps -a | sed 1d | awk '{print $1}') ;;
