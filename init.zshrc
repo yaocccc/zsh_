@@ -1,7 +1,6 @@
 # profile
     export ZSH=~/.config/zsh
     export PYTHON=$(which python)
-    export WORKDOC=/home/chenyc/backups/work
     export EDITOR=nvim
 
 # maps
@@ -15,9 +14,9 @@
             [ -d $f ] && mv $f $dir/${f##*/};
         done
     }
-    alias year='dir=~/backups/todo/$(date +"%Y") && mkdir -p $dir && cd $dir && vim $(date +"%Y").md'
-    alias month='dir=~/backups/todo/$(date +"%Y")/$(date +"%Y.%m") && mkdir -p $dir && cd $dir && vim $(date +"%Y.%m").md'
-    alias day='dir=~/backups/todo/$(date +"%Y")/$(date +"%Y.%m") && mkdir -p $dir && cd $dir && vim $(date +"%Y.%m.%d").md'
+    alias T='dir=~/backups/todo && mkdir -p $dir && vim $dir/todo.md'
+    alias year='dir=~/backups/todo/$(date +"%Y") && mkdir -p $dir && vim $dir/$(date +"%Y").md'
+    alias month='dir=~/backups/todo/$(date +"%Y") && mkdir -p $dir && vim $dir/$(date +"%Y.%m").md'
     alias S='startx'
     alias vzc='vim $ZSH/init.zshrc'
     alias vrc='vim ~/.config/nvim/init.vim'
@@ -113,6 +112,3 @@
     if [[ -d $VIM_TEM_DIR ]] { cd $VIM_TEM_DIR && ~/scripts/edit-profile.sh VIM_TEM_DIR '' } else { cd $CURRENT_DIR }
     print -n "\e]2;$(basename `pwd`)\a"
     clear
-
-# rm -rf ~/.config/zsh/fcitx
-# cp -r ~/.config/fcitx ~/.config/zsh/fcitx
