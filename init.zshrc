@@ -14,6 +14,7 @@
             [ -d $f ] && mv $f $dir/${f##*/};
         done
     }
+    alias l='ls --time-style=long-iso -l'
     alias T='dir=~/backups/todo && mkdir -p $dir && vim $dir/todo.md'
     alias year='dir=~/backups/todo/$(date +"%Y") && mkdir -p $dir && vim $dir/$(date +"%Y").md'
     alias month='dir=~/backups/todo/$(date +"%Y") && mkdir -p $dir && vim $dir/$(date +"%Y.%m").md'
@@ -28,6 +29,7 @@
     alias getip="ip addr show | grep '192.168.' | awk '{print \$2}'"
     alias git='git --no-pager'
     alias sc='~/scripts/set-screen.sh'
+    alias scc='~/scripts/set-mp4-wallpaper.sh'
     alias bl='~/scripts/bluetooth.sh'
     alias gif='~/scripts/gif-recorder.sh'
     alias vpn='~/scripts/app-starter.sh vpn '
@@ -54,9 +56,7 @@
     }
     gam() { git add --all && git commit -m "$*" }
     gitlog() {
-        count=`git branch | wc -l` && [ $count -gt 1 ] \
-            && git --no-pager log --pretty=format:$1 --graph   -n ${2-10} \
-            || git --no-pager log --pretty=format:$1 --reverse -n ${2-10}
+        git --no-pager log --pretty=format:$1 --graph   -n ${2-10} \
     }
     gll() { gitlog "%h %s" $1 }
     glll() { gitlog "%H %cd %cn: %s" $1 }
