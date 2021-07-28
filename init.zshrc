@@ -20,12 +20,12 @@
     alias month='dir=~/backups/todo/$(date +"%Y") && mkdir -p $dir && vim $dir/$(date +"%Y.%m").md'
     alias S='startx'
     alias vzc='vim $ZSH/init.zshrc'
-    alias vrc='vim ~/.config/nvim/init.vim'
+    alias vrc='cd ~/.config/nvim && vim init.vim'
     alias fzf='fzf --preview "bat -p --color=always {} | head -100" --height 40%'
     alias ts='ts-node'
     alias ns='npm run start'
     alias nb='npm run build'
-    alias dx='du -h -d 1'
+    alias dx='sudo du -h -d 1'
     alias getip="ip addr show | grep '192.168.' | awk '{print \$2}'"
     alias git='git --no-pager'
     alias sc='~/scripts/set-screen.sh'
@@ -39,6 +39,7 @@
     alias clock='~/scripts/app-starter.sh clock && exit'
     alias surf='~/scripts/app-starter.sh surf'
     alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
+    alias gpt='git push origin --tags'
     alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
     alias gd='git diff'
     alias gs='git status'
@@ -46,6 +47,7 @@
     alias tp='~/scripts/app-starter.sh toogle_privoxy && source ~/.profile'
     alias ssh='~/.ssh/ssh.sh'
     alias rl='sudo systemctl restart NetworkManager.service'
+    alias up='st -e nvim +PlugUpdate\|CocUpdate >> /dev/null 2>&1 & sudo pacman -Syyu'
     docker() {
         case $* in
             restart) sudo docker restart $(sudo docker ps -a | sed 1d | awk '{print $1}') ;;
