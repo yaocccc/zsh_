@@ -1,6 +1,6 @@
 alias git='git --no-pager'
 alias gco='git checkout'
-alias ginit='git init && echo "[user]\n    email = flyforest@outlook.com" >> .git/config'
+alias ginit='git init && echo "[user]\n    email = flyforest@outlook.com" >> .git/config && cp ~/.gitignore .'
 alias gpo='git push origin $(git symbolic-ref --short -q HEAD)'
 alias gpt='git push origin --tags'
 alias gpl='git pull origin $(git symbolic-ref --short -q HEAD) --ff-only'
