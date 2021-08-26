@@ -1,3 +1,5 @@
+export GIT_TERMINAL_PROMPT=1
+
 alias git='git --no-pager'
 alias gco='git checkout'
 alias ginit='git init && echo "[user]\n    email = flyforest@outlook.com" >> .git/config && cp ~/.gitignore .'
