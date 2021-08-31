@@ -6,5 +6,4 @@ source $ZSH/config/node.zsh
 source $ZSH/config/vim.zsh
 source $ZSH/config/zsh.zsh
 source $ZSH/config/fzf.zsh
-source $ZSH/config/vi-mode.zsh
 source $ZSH/config/hooks.zsh
