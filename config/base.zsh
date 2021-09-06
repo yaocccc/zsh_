@@ -20,6 +20,9 @@ alias ast='~/scripts/app-starter.sh ast'
 alias ssh='~/.ssh/ssh.sh'
 alias rl='sudo systemctl restart NetworkManager.service'
 alias up='st -e nvim +PlugUpdate\|CocUpdate >> /dev/null 2>&1 & sudo pacman -Syyu'
+alias weather="curl -sf 'wttr.in/ShangHai'"
+alias weather2="curl -sf 'wttr.in/WenZhou'"
+
 rm() {
     for f in $*;
     do
