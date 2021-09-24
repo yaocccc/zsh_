@@ -38,8 +38,8 @@ docker() {
     case $* in
         restart) sudo docker restart $(sudo docker ps -a | sed 1d | c 1) ;;
         stop) sudo docker stop $(sudo docker ps -a | sed 1d | c 1) ;;
-        rm) sudo docker stop $(sudo docker ps -a | sed 1d | c 1) ;;
-        rmi) sudo docker stop $(sudo docker images | sed 1d | c 3) ;;
+        rm) sudo docker rm $(sudo docker ps -a | sed 1d | c 1) ;;
+        rmi) sudo docker rmi $(sudo docker images | sed 1d | c 3) ;;
         ps) sudo docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}" ;;
         *) sudo docker $* ;;
     esac
