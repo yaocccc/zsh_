@@ -2,11 +2,10 @@ export PYTHON=$(which python)
 export EDITOR=nvim
 
 alias S='startx'
-alias l='ls --time-style=long-iso -l'
 alias dx='sudo du -h -d 1'
 alias getip="ip addr show | grep '192.168.' | awk '{print \$2}'"
 alias sc='~/scripts/set-screen.sh'
-alias scc='~/scripts/set-mp4-wallpaper.sh'
+alias scc='~/scripts/set-wallpaper.sh'
 alias bl='~/scripts/bluetooth.sh'
 alias gif='~/scripts/gif-recorder.sh'
 alias vpn='~/scripts/app-starter.sh vpn '
@@ -23,6 +22,9 @@ alias up='st -e nvim +PlugUpdate\|CocUpdate >> /dev/null 2>&1 & sudo pacman -Syy
 alias weather="curl -sf 'wttr.in/ShangHai'"
 alias weather2="curl -sf 'wttr.in/WenZhou'"
 
+c() {
+    awk '{print $'$1'}'
+}
 rm() {
     for f in $*;
     do
@@ -34,8 +36,10 @@ rm() {
 }
 docker() {
     case $* in
-        restart) sudo docker restart $(sudo docker ps -a | sed 1d | awk '{print $1}') ;;
-        stop) sudo docker stop $(sudo docker ps -a | sed 1d | awk '{print $1}') ;;
+        restart) sudo docker restart $(sudo docker ps -a | sed 1d | c 1) ;;
+        stop) sudo docker stop $(sudo docker ps -a | sed 1d | c 1) ;;
+        rm) sudo docker stop $(sudo docker ps -a | sed 1d | c 1) ;;
+        rmi) sudo docker stop $(sudo docker images | sed 1d | c 3) ;;
         ps) sudo docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}" ;;
         *) sudo docker $* ;;
     esac
