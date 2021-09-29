@@ -14,7 +14,6 @@ alias google='web_search google'
 alias baidu='web_search baidu'
 alias clock='~/scripts/app-starter.sh clock && exit'
 alias surf='~/scripts/app-starter.sh surf'
-alias tp='~/scripts/app-starter.sh toogle_privoxy && source ~/.profile'
 alias ast='~/scripts/app-starter.sh ast'
 alias ssh='~/.ssh/ssh.sh'
 alias rl='sudo systemctl restart NetworkManager.service'
@@ -22,6 +21,10 @@ alias up='st -e nvim +PlugUpdate\|CocUpdate >> /dev/null 2>&1 & sudo pacman -Syy
 alias weather="curl -sf 'wttr.in/ShangHai'"
 alias weather2="curl -sf 'wttr.in/WenZhou'"
 
+tp() {
+    [ "$(docker ps | grep v2raya)" ] && docker stop v2raya || docker restart v2raya
+    ~/scripts/dwm-status.sh
+}
 c() {
     awk '{print $'$1'}'
 }
