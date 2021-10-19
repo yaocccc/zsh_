@@ -1,6 +1,6 @@
 alias fzf='fzf --preview "bat -p --color=always {} | head -100" --height 40%'
 
-export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --history=/home/chenyc/.config/zsh/fzfhistory"
+export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --history=/home/chenyc/.config/zsh/cache/fzfhistory"
 export FZF_DEFAULT_COMMAND="fd --exclude={.git,.idea,.vscode,.sass-cache,node_modules,build,dist} --type f"
 export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat -n --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -10000'
 

@@ -12,7 +12,7 @@ alias vpn='~/scripts/app-starter.sh vpn '
 alias vpn2='~/scripts/app-starter.sh vpn2 '
 alias google='web_search google'
 alias baidu='web_search baidu'
-alias clock='~/scripts/app-starter.sh clock && exit'
+alias C='~/scripts/app-starter.sh clock && exit'
 alias surf='~/scripts/app-starter.sh surf'
 alias ast='~/scripts/app-starter.sh ast'
 alias ssh='~/.ssh/ssh.sh'
@@ -31,10 +31,11 @@ c() {
 rm() {
     for f in $*;
     do
-        dir=~/.local/share/Trash/files/$(date '+%Y%m%d')/${f%/*}
+        dir=~/.local/share/Trash/files/$(date '+%Y%m%d-%H%M')
+        target=$dir/${f##*/}
         mkdir -p $dir
-        [ -f $f ] && mv $f $dir/${f##*/};
-        [ -d $f ] && mv $f $dir/${f##*/};
+        [ -f $f ] && mv $f $target;
+        [ -d $f ] && mv $f $target;
     done
 }
 docker() {
