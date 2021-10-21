@@ -1,5 +1,6 @@
 export PYTHON=$(which python)
 export EDITOR=nvim
+export TRASH=~/.local/share/Trash/files
 
 alias S='startx'
 alias dx='sudo du -h -d 1'
@@ -15,7 +16,7 @@ alias baidu='web_search baidu'
 alias C='~/scripts/app-starter.sh clock && exit'
 alias surf='~/scripts/app-starter.sh surf'
 alias ast='~/scripts/app-starter.sh ast'
-alias ssh='~/.ssh/ssh.sh'
+alias ssh='~/scripts/ssh.sh'
 alias rl='sudo systemctl restart NetworkManager.service'
 alias up='st -e nvim +PlugUpdate\|CocUpdate >> /dev/null 2>&1 & sudo pacman -Syyu'
 alias weather="curl -sf 'wttr.in/ShangHai'"
@@ -31,7 +32,7 @@ c() {
 rm() {
     for f in $*;
     do
-        dir=~/.local/share/Trash/files/$(date '+%Y%m%d-%H%M')
+        dir=$TRASH/$(date '+%Y%m%d-%H%M')
         target=$dir/${f##*/}
         mkdir -p $dir
         [ -f $f ] && mv $f $target;

@@ -6,4 +6,4 @@ alias nt='npm run test'
 
 export NVM_DIR="$HOME/.nvm"
 nvm() { . "$NVM_DIR/nvm.sh" ; nvm $@ ; }
-export PATH=$HOME/.nvm/versions/node/v12.20.1/bin/:$PATH
+export PATH=$HOME/.nvm/versions/node/v16.8.0/bin/:$PATH
