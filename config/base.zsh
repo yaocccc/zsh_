@@ -1,4 +1,4 @@
-export PYTHON=$(which python)
+export PYTHON=$(which python3)
 export EDITOR=nvim
 export TRASH=~/.local/share/Trash/files
 
