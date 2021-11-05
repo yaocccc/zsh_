@@ -19,9 +19,12 @@ alias ast='~/scripts/app-starter.sh ast'
 alias ssh='~/.ssh/ssh.sh'
 alias rl='sudo systemctl restart NetworkManager.service'
 alias up='st -e nvim +PlugUpdate\|CocUpdate >> /dev/null 2>&1 & sudo pacman -Syyu'
-alias weather="curl -sf 'wttr.in/ShangHai'"
-alias weather2="curl -sf 'wttr.in/WenZhou'"
+alias music='~/scripts/app-starter.sh music'
+alias weather='_weather >/dev/null 2>&1'
 
+_weather() {
+    notify-send "$(date '+%Y-%m-%d')" "$(curl 'wttr.in/ShangHai?format=3')\n$(curl 'wttr.in/WenZhou?format=3')"
+}
 tp() {
     [ "$(docker ps | grep v2raya)" ] && docker stop v2raya || docker restart v2raya
     ~/scripts/dwm-status.sh
