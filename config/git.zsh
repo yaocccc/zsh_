@@ -14,10 +14,10 @@ alias glt='git tag -n --sort=taggerdate | tail -n ${1-10}'
 gat() { git tag -a $1 -m "$2" }
 gam() { git add --all && git commit -m "$*" }
 gitlog() {
-    git --no-pager log --pretty=format:$1 --graph -n ${2-10} \
+    git --no-pager log --date=format:'%Y-%m-%d %H:%M:%S'  --pretty=format:$1 --graph -n ${2-10} \
 }
 gll() { gitlog "%h %s" $1 }
-glll() { gitlog "%H %cd %cn: %s" $1 }
+glll() { gitlog "%h %cd %cn: %s" $1 }
 
 # git tag
 # git show V1.2

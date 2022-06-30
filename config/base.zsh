@@ -13,7 +13,6 @@ alias vpn2='~/scripts/app-starter.sh vpn2 '
 alias surf='~/scripts/app-starter.sh surf'
 alias ssh='~/.ssh/ssh.sh'
 alias scp='~/.ssh/scp.sh'
-alias rl='sudo systemctl restart NetworkManager.service'
 alias up='st -e nvim +PlugUpdate\|CocUpdate >> /dev/null 2>&1 & sudo pacman -Syyu'
 
 tp() {
@@ -42,4 +41,7 @@ docker() {
         ps) sudo docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}" ;;
         *) sudo docker $* ;;
     esac
+}
+bili() {
+    curl -X POST 'localhost:9527' -d "$*"
 }

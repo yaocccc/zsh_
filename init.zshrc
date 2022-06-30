@@ -7,3 +7,6 @@ source $ZSH/config/vim.zsh
 source $ZSH/config/zsh.zsh
 source $ZSH/config/fzf.zsh
 source $ZSH/config/hooks.zsh
+
+# 如果当前在tty1自动开启startx
+[ $(tty) = "/dev/tty1" ] && cd ~ && startx
