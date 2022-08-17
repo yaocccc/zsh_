@@ -13,7 +13,7 @@ alias vpn2='~/scripts/app-starter.sh vpn2 '
 alias surf='~/scripts/app-starter.sh surf'
 alias ssh='~/.ssh/ssh.sh'
 alias scp='~/.ssh/scp.sh'
-alias up='st -e nvim +PlugUpdate\|CocUpdate >> /dev/null 2>&1 & sudo pacman -Syyu'
+alias up='st -e nvim +PackerSync\|CocUpdate >> /dev/null 2>&1 & sudo pacman -Syyu'
 
 tp() {
     [ "$(docker ps | grep v2raya)" ] && docker stop v2raya || docker restart v2raya
