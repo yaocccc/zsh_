@@ -9,11 +9,10 @@ alias scc='~/scripts/set-wallpaper.sh'
 alias bl='~/scripts/bluetooth.sh'
 alias gif='~/scripts/gif-recorder.sh'
 alias vpn='~/scripts/app-starter.sh vpn '
-alias vpn2='~/scripts/app-starter.sh vpn2 '
 alias surf='~/scripts/app-starter.sh surf'
 alias ssh='~/.ssh/ssh.sh'
 alias scp='~/.ssh/scp.sh'
-alias up='st -e nvim +PackerSync\|CocUpdate >> /dev/null 2>&1 & sudo pacman -Syyu'
+alias up='sudo pacman -Syyu'
 
 tp() {
     [ "$(docker ps | grep v2raya)" ] && docker stop v2raya || docker restart v2raya
@@ -43,5 +42,19 @@ docker() {
     esac
 }
 bili() {
-    curl -X POST 'localhost:9527' -d "$*"
+    while true; do
+        if [ "$*" ]; then
+            line="$*"
+        else
+            printf '输入弹幕: '
+            read line
+        fi
+        while true; do
+            curl -X POST 'localhost:9527' -d "${line:0:20}"
+            line=${line:20}
+            [ ! "$line" ] && break
+            sleep 1
+        done
+        [ "$*" ] && break
+    done
 }
