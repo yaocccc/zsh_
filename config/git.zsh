@@ -1,3 +1,4 @@
+# git相关的快捷键设置
 export GIT_TERMINAL_PROMPT=1
 
 alias git='git --no-pager'

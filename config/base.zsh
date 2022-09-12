@@ -2,25 +2,7 @@ export PYTHON=$(which python3)
 export EDITOR=nvim
 export TRASH=~/.local/share/Trash/files
 
-alias S='startx'
-alias dx='sudo du -h -d 1'
-alias sc='~/scripts/set-screen.sh'
-alias scc='~/scripts/set-wallpaper.sh'
-alias bl='~/scripts/bluetooth.sh'
-alias gif='~/scripts/gif-recorder.sh'
-alias vpn='sudo openfortivpn -c ~/.ssh/vpn.conf -p '
-alias surf='~/scripts/app-starter.sh surf'
-alias ssh='~/.ssh/ssh.sh'
-alias scp='~/.ssh/scp.sh'
-alias up='sudo pacman -Syyu'
-
-tp() {
-    [ "$(docker ps | grep v2raya)" ] && docker stop v2raya || docker restart v2raya
-    ~/scripts/dwm-status.sh
-}
-col() {
-    awk '{print $'$1'}'
-}
+vim() { if [[ $* && -d $* ]] { cd $* && nvim } else { nvim $* } }
 rm() {
     for f in $*;
     do
@@ -40,21 +22,4 @@ docker() {
         ps) sudo docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}" ;;
         *) sudo docker $* ;;
     esac
-}
-bili() {
-    while true; do
-        if [ "$*" ]; then
-            line="$*"
-        else
-            printf '输入弹幕: '
-            read line
-        fi
-        while true; do
-            curl -X POST 'localhost:9527' -d "${line:0:20}"
-            line=${line:20}
-            [ ! "$line" ] && break
-            sleep 1
-        done
-        [ "$*" ] && break
-    done
 }
