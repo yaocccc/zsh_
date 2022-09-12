@@ -10,3 +10,4 @@ log/
 **/catch
 cache/
 fzfhistory
+config/private.zsh
