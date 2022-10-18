@@ -1,3 +1,5 @@
+[ -f '/usr/share/fzf/key-bindings.zsh' ] && source /usr/share/fzf/key-bindings.zsh
+
 alias fzf='fzf --preview "bat -p --color=always {} | head -100" --height 40%'
 
 export FZF_DEFAULT_OPTS="--height 50% --layout=reverse --history=$HOME/.config/zsh/cache/fzfhistory"
