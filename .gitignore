@@ -9,4 +9,4 @@ log/
 **/.DS_Store
 **/catch
 cache/
-config/private.zsh
+config/private*.zsh
