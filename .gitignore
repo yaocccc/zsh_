@@ -8,4 +8,5 @@ log/
 **/dump.rdb
 **/.DS_Store
 **/catch
+cache/
 config/private.zsh
