@@ -19,6 +19,12 @@ zsh配置 基于ohz精简 启动速度稳定在0.1s内
 - bat
 - fd
 
+```shell
+  # 安装 fzf
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+```
+
 ## 插件列表(只保留最精简实用):  
 
 1. z  
