@@ -152,7 +152,6 @@ autoload -U colors && colors
 setopt auto_cd
 setopt multios
 setopt prompt_subst
-alias ls='ls --color=tty' || { ls -G . &>/dev/null && alias ls='ls -G' }
 
 function git_prompt_info() {
   local ref
