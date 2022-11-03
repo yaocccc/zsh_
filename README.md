@@ -56,6 +56,7 @@ zsh配置 基于ohz精简 启动速度稳定在0.1s内
 │   ├── private.zsh  -- !!!私有配置 注意此文件不会跟着git版本变更 若个人有需要的特定配置可写入该文件!!!
 │   ├── fzf.zsh      -- fzf 及 fzf-tab配置
 │   ├── git.zsh      -- git相关配置
+│   ├── hook.zsh     -- 命令或启动钩子配置
 │   └── zsh.zsh      -- zsh基础配置
 ├── plugins/         -- 插件
 ├── themes/          -- 主题
