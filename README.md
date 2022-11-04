@@ -1,3 +1,6 @@
+# 本仓库不再维护 迁移置 [yaocccc/omz](https://github.com/yaocccc/omz)
+
+
 # ZSH
 
 zsh配置 基于ohz精简 启动速度稳定在0.1s内  
