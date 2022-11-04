@@ -7,15 +7,6 @@ preexec_hook() { _cmd=($(echo $2)); print -n "\e]2;${(q)_cmd[1]}\a"; }
 add-zsh-hook -Uz chpwd chpwd_hook
 add-zsh-hook -Uz preexec preexec_hook
 
-# 启动时从cache读取 vimdir、currentdir 优先进入vimdir
-# PS: vimdir由vim开启终端前 执行 echo $pwd > $ZSH/cache/vimdir 指令
-vimdir=$(cat $ZSH/cache/vimdir 2>/dev/null)
+# 启动时 尝试从cache/pwd中读取上次的pwd 并切换到该目录
 currentdir=$(cat $ZSH/cache/currentdir 2>/dev/null)
-
-if [ -d "$vimdir" ]; then
-    cd $vimdir
-    echo > $ZSH/cache/vimdir
-    echo $currentdir > $ZSH/cache/currentdir
-elif [ -d "$currentdir" ]; then
-    cd $currentdir
-fi
+[ -d "$currentdir" ] && cd $currentdir

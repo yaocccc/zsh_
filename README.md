@@ -12,20 +12,25 @@ zsh配置 基于ohz精简 启动速度稳定在0.1s内
 
 ## REQUIRES
 
-以下依赖请自行安装
-
 - zsh
 - fzf
-- bat
 - fd
+- bat (可选 更好的文本预览效果)
+- exa (可选 更好的ls预览效果)
 
-```shell
-  # 安装 fzf
+```plaintext
+  请自行安装fd
+  On macOS: brew install fd
+  On Arch Linux: pacman -S fd
+  On Ubuntu: apt install fd-find && ln -s $(which fdfind)
+  On Debian: sudo apt-get install fd-find && ln -s $(which fdfind) ~/.local/bin/fd
+
+  请自行安装fzf
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
 ```
 
-## 插件列表(只保留最精简实用):  
+## PLUGINS
 
 1. z  
     > `z keyword`  
@@ -53,7 +58,6 @@ zsh配置 基于ohz精简 启动速度稳定在0.1s内
 .
 ├── cache/           -- 部分需要缓存的配置
 ├── config/
-│   ├── private.zsh  -- !!!私有配置 注意此文件不会跟着git版本变更 若个人有需要的特定配置可写入该文件!!!
 │   ├── fzf.zsh      -- fzf 及 fzf-tab配置
 │   ├── git.zsh      -- git相关配置
 │   ├── hook.zsh     -- 命令或启动钩子配置
@@ -69,10 +73,7 @@ zsh配置 基于ohz精简 启动速度稳定在0.1s内
 ## 主题
 
 ```plaintext
-  可自定义内容:
-  可在环境变量中自定义PCNAME变量
-  主题将展示 {PCNAMAE}{pwd}[gitstatus]
-  以此来区分不同的使用环境
+  优先载入 themes/_.zsh-theme
 ```
 
 ![avatar](./screenshots/show.gif)

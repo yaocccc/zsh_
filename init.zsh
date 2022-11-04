@@ -5,6 +5,6 @@ source $ZSH/config/fzf.zsh
 source $ZSH/config/hook.zsh
 
 # Load the private config if it exists
-for file in $ZSH/config/private*.zsh; do
+for file in $ZSH/config/_*.zsh; do
   source $file
 done

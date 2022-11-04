@@ -9,4 +9,7 @@ log/
 **/.DS_Store
 **/catch
 cache/
-config/private*.zsh
+
+# private some custom file
+config/_*
+themes/_*
