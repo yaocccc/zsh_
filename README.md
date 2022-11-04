@@ -1,4 +1,4 @@
-# 本仓库不再维护 迁移置 [yaocccc/omz](https://github.com/yaocccc/omz)
+# 本仓库不再维护 迁移至 [yaocccc/omz](https://github.com/yaocccc/omz)
 
 
 # ZSH
