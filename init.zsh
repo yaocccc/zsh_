@@ -4,4 +4,7 @@ source $ZSH/config/zsh.zsh
 source $ZSH/config/fzf.zsh
 source $ZSH/config/hook.zsh
 
-[ -f $ZSH/config/private.zsh ] && source $ZSH/config/private.zsh
+# Load the private config if it exists
+for file in $ZSH/config/private*.zsh; do
+  source $file
+done
